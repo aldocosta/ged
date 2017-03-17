@@ -1,0 +1,87 @@
+﻿@model DEEntities.Depto
+
+@{
+    ViewBag.Title = "Novo";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@section script
+{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/departamento.js"></script>
+
+}
+<style>
+    button {
+        width: 100px;
+        margin: 3px;
+    }
+</style>
+<div class="panel panel-primary gedbox">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Formulário de cadastro de departamentos</h3>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnNovo"
+                data-toggle="tooltip" data-placement="right" title="Novo Registro">
+            Novo
+        </button>
+    </div>
+    <div class="panel-body panel-body-resp">
+        <table class="table table-responsive display" id="gridlista">
+            <thead>
+                <tr>
+                    <th colspan="2">Menu</th>
+                    <th>Id</th>
+                    <th>Departamento</th>
+                    <th>Criação</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan="2">Menu</th>
+                    <th>Id</th>
+                    <th>Departamento</th>
+                    <th>Criação</th>
+                    <th>Owner</th>
+                </tr>
+            </tfoot>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNovo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:75% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="dismissbutton" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="panel panel-primary gedbox">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Formulário de cadastro de usuário <span id="spnidregistro"></span></h3>
+                    </div>
+                    <div class="panel-body panel-body-resp">
+
+
+                        @using (Html.BeginForm("Novo", "Departamento", FormMethod.Post, new { role = "form" }))
+                        {
+                            <div class="form-group">
+                                <label for="NmEntidade">Nome do Departamento:</label>
+                                <input type="text" class="form-control" name="NmDepto" id="NmDepto" placeholder="Nome do departamento" required>
+                            </div>
+                            <div style="float:right">
+                                <button type="button" class="btn btn-default" id="btngravar">Gravar</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnfecharnovo">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

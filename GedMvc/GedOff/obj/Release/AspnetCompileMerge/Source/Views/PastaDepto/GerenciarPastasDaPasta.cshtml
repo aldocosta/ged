@@ -1,0 +1,207 @@
+﻿@model IEnumerable<GedOff.Models.PastaProcesso>
+
+@{
+    ViewBag.Title = "Pastas e Processos";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+    var pasta = Session["pasta"] as DEEntities.Pasta;
+    string pastanome = Request.QueryString["pasta"];
+    string idpastaanterior = Request.QueryString["idpastaanterior"];
+}
+
+@section script
+{
+    <script src="~/Scripts/GerenciarPastasprocesso.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+}
+<input type="hidden" id="idpasta" />
+<div class="panel panel-primary gedbox">
+    <div class="panel-heading">
+        @{
+            DEEntities.Depto depto = null;
+            if (Session["depto"] != null)
+            {
+                depto = Session["depto"] as DEEntities.Depto;
+            }
+        }
+        Pastas do departamento (@depto.NomeDepto)
+    </div>
+    <div class="panel-body panel-body-resp">
+        <!--INNER MENU-->
+        @Html.Partial("MenuNavegar")
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Informações </div>
+            <div class="panel-body panel-body-resp">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <div>
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">Pasta atual: </div>
+                                <label class="panelInfo-label-result">
+                                    <span id="spnpastanome"> @pasta.NmPasta</span>
+                                </label>
+                            </div>
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">Pasta anterior: </div>
+                                <label class="panelInfo-label-result">
+                                    <span id="spnpastanome">
+                                        @if (pasta.PastaPai != null)
+                                        {
+                                            @Html.ActionLink(@pasta.PastaPai.NmPasta, "GerenciarPastasDaPasta", new { idpasta = pasta.PastaPai.Codigo })
+                                        }
+                                    </span>
+                                    @*<a href="/PastaDepto/GerenciarPastasDaPasta?idpasta=@idpastaanterior">  </a>*@
+                                </label>
+                            </div>
+
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">Criado: </div> <label class="panelInfo-label-result">
+                                    @pasta.DtCriacao
+                                </label>
+                            </div>
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">Descrição: </div> <label class="panelInfo-label-result">
+                                    @pasta.DsPasta
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body panel-body-resp">
+        <div class="panel panel-default">
+            <div class="panel-heading">Pastas internas/Processos da pasta </div>
+            <div class="panel-body panel-body-resp">
+                <table id="tblpastas" class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Código</th>
+                            <th>Tipo</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><a href="#"><span class="glyphicon glyphicon-eye-open"></span> Abrir</a></td>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil"></span><a href="#"> Editar </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="glyphicon glyphicon-minus"></span> Deletar
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @item.Codigo
+                                    </td>
+                                    <td>
+                                        @if (item.Tipo.Trim() == "Pasta")
+                                        {
+                                            <span class="glyphicon glyphicon-folder-open"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="glyphicon glyphicon-paperclip"></span>
+                                        }
+                                        @item.Tipo
+                                    </td>
+                                    <td>
+                                        @item.NmPasta
+                                    </td>
+                                    <td>
+                                        @item.DsPasta
+                                    </td>
+                                    <td>
+                                        @item.Owner.NmEntidade
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalNovaPasta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:75% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary gedbox">
+                    <div class="panel-heading">
+                        NOVA PASTA
+                    </div>
+                    <div class="panel-body panel-body-resp">
+                        <div class="form-group">
+                            <label for="NmPasta">Nome da Pasta:</label>
+                            <input type="text" class="form-control" name="NmPasta" id="NmPasta" placeholder="Nome da pasta" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="DsPasta">Descrição da pasta:</label>
+                            <textarea class="form-control" name="DsPasta" id="DsPasta" placeholder="Descrição"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnGravarNovaPasta">Gravar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnfecharnovo">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL PROCESSOS-->
+<div class="modal fade" id="modalNovoProcesso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:75% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary gedbox">
+                    <div class="panel-heading">
+                        NOVO PROCESSO
+                    </div>
+                    <div class="panel-body panel-body-resp">
+                        <div class="form-group">
+                            <label for="NmPasta">Nome do Processo:</label>
+                            <input type="text" class="form-control" name="NmProcesso" id="NmProcesso" placeholder="Nome da pasta" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="DsPasta">Descrição do Processo:</label>
+                            <textarea class="form-control" name="DsProcesso" id="DsProcesso" placeholder="Descrição"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnGravarProcesso">Gravar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnfecharnovo">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

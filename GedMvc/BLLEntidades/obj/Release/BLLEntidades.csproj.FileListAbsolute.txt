@@ -1,0 +1,12 @@
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\BLLEntidades.dll.config
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\BLLEntidades.dll
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\BLLEntidades.pdb
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\DAL.dll
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\DEEntities.dll
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\Utilities.dll
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\DAL.pdb
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\DEEntities.pdb
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Release\Utilities.pdb
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\obj\Release\BLLEntidades.csprojResolveAssemblyReference.cache
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\obj\Release\BLLEntidades.dll
+C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\obj\Release\BLLEntidades.pdb

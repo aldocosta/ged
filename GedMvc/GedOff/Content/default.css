@@ -1,0 +1,99 @@
+﻿body {
+    background-color: #53667A;
+}
+
+.gedbox {
+    margin: 5% auto;
+    width: 85% !important;
+    height: 85% !important;
+}
+
+.principal {
+}
+
+.loginBox {
+    border-radius: 10px;
+    padding: 10px;
+    width: 400px;
+    margin: 150px auto;
+    border: 1px solid black;
+    box-shadow: 05px 10px black;
+    /*color:white;*/
+    background-color: white;
+}
+
+.userLogged {
+    color: black;
+    text-transform: capitalize;
+}
+
+.deptos {
+    border-radius: 10px;
+    box-shadow: 05px 5px black;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    background-color: #f5f5f5;
+    color: black;
+    cursor: pointer;
+}
+
+.deptoCaption {
+    display: table-cell;
+    width: 150px;
+    height: 75px;
+    vertical-align: middle;
+}
+
+.deptos, .deptoCaption {
+    width: 150px;
+    height: 75px;
+}
+
+    .deptos:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .deptoCaption a {
+        text-decoration: none;
+    }
+
+table tr td, table tr th {
+    text-align: center;
+}
+
+.panelInfo-label {
+    width: 100%;
+    background-color: silver;
+    border: 1px solid black;
+    box-shadow: 2px 2px;
+    font-weight: 100;
+    margin: 0 0 0 5px;
+    padding: 5px;
+}
+
+.panelInfo-label-result {
+    border-left: 1px solid black;
+    width: 100%;
+    text-align: center;
+    margin: 5px 10px 2px 10px;
+}
+
+.panelInfo {
+    float: left;
+    margin: 0 10px 2px 10px;
+}
+
+
+.panel-body-resp {
+    overflow: auto;
+}
+
+#frmnovasenha {
+    background-color: white;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 3px 3px;
+    width: 450px;
+}

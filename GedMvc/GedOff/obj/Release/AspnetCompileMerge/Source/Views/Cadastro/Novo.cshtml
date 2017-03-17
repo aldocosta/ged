@@ -1,0 +1,116 @@
+﻿@model DEEntities.Entidade
+
+@{
+    ViewBag.Title = "Novo";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@section script
+{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/novocadastro.js"></script>    
+}
+
+<style>
+    button {
+        width: 100px;
+        margin: 3px;
+    }
+    #btnBloquear{
+        display:none;
+    }
+</style>
+
+<div class="panel panel-primary gedbox" style="margin:10px auto" id="pnllista">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-list"></span> Usuários</h3>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnNovo"
+                data-toggle="tooltip" data-placement="right" title="Novo Registro">
+            Novo
+        </button>
+    </div>
+    <div class="panel-body panel-body-resp">
+        <table class="table table-responsive display" id="tablecon" style="overflow:auto">
+            <thead>
+                <tr>
+                    <th colspan='2'>Menu</th>
+                    <th>Id</th>
+                    <th>Nome usuário</th>
+                    <th>Login</th>
+                    <th>Email</th>
+                    <th>Tipo Usuário</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan='2'>Menu</th>
+                    <th>Id</th>
+                    <th>Nome usuário</th>
+                    <th>Login</th>
+                    <th>Email</th>
+                    <th>Tipo Usuário</th>
+                </tr>
+            </tfoot>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNovo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:75% !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="panel panel-primary gedbox">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Formulário de cadastro de usuário <span id="spnidregistro"></span></h3>
+                    </div>
+                    <div class="panel-body panel-body-resp">
+
+                        @using (Html.BeginForm("Novo", "Cadastro", FormMethod.Post, new { role = "form" }))
+                        {
+                            <div class="form-group">
+                                <label for="NmEntidade">Nome do Usuário:</label>
+                                <input type="text" class="form-control" name="NmEntidade" id="NmEntidade" placeholder="Nome do usuário" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="NmUser">Nome de login:</label>
+                                <input type="text" class="form-control" name="NmUser" id="NmUser" placeholder="Nome de login" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="NmEmail">Email:</label>
+                                <input type="text" class="form-control" name="NmEmail" id="NmEmail" placeholder="Email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <label for="selTipo">Tipo de usuário:</label>
+                                    <select class="form-control" name="selTipo" id="selTipo">
+                                        <option value="1">
+                                            Administrador
+                                        </option>
+                                        <option value="2">
+                                            Usuário
+                                        </option>
+                                    </select>
+                                </div>
+                                <div style="float:right">
+                                    <button type="button" class="btn btn-default" id="btnBloquear">Bloquear</button>
+                                    <button type="button" class="btn btn-default" id="btnReset">Reset</button>
+                                    <button type="button" class="btn btn-default" id="btngravar">Gravar</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnfecharnovo">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DEEntities.Pasta>
+@{
+    ViewBag.Title = "PesquisarPastas";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+@section script
+{
+    <script src="~/Scripts/pesquisapasta.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+}
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Pesquisa de pastas</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-condensed dataTable" id="tblpastas">
+                <thead>
+                    <tr>
+                        <td>Link</td>
+                        <td>Id</td>
+                        <td>Pasta</td>
+                        <td>Descrição</td>
+                        <td>Criador</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Link Pasta", "GerenciarPastasDaPasta", "PastaDepto", new { idpasta = @item.Codigo }, new { @class = "btn btn-primary" })
+                                </td>
+                                <td>
+                                    @item.Codigo
+                                </td>
+                                <td>
+                                    @item.NmPasta
+                                </td>
+                                <td>
+                                    @item.DsPasta
+                                </td>
+                                <td>
+                                    @item.Owner.NmEntidade
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

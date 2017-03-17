@@ -1,0 +1,97 @@
+﻿@model IEnumerable<DEEntities.Repositorio>
+
+@{
+    ViewBag.Title = "PesquisarRegistros";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+
+}
+
+
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/pesquisarRegistros.js"></script>
+<script src="~/Scripts/jquery.dataTables.js"></script>
+
+<div class="gedbox">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Pesquisa avançada:  </h3>
+        </div>
+        <div class="panel-body" style="overflow:auto">
+            @Html.Partial("MenuNavegar")
+            <table class="table table-responsive" id="tblreg">
+                <thead>
+                    <tr>
+                        <th>
+                            Baixar
+                        </th>
+                        @*<th style="display:none">
+                                @Html.DisplayNameFor(model => model.CdProcesso)
+                            </th>*@
+                        <th>
+                            Nome do Arquivo
+                        </th>
+                        <th>
+                            Detalhes
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Extensao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tamanho)
+                        </th>
+                        <th>
+                            Palavras chave
+                        </th>
+                        <th>
+                            Owner
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Download", "Download", new { arquivo = item.NomeArquivo, extensao = item.Extensao, nome = item.CdRepositorio.ToString() + item.CdProcesso.ToString() + "." + item.Extensao }, new { @class = "btn btn-primary" })
+                                </td>
+                                @*<td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.CdProcesso)
+                                    </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomeArquivo)
+                                </td>
+                                <td>
+                                    <span class="divisor">
+                                        @Html.ActionLink("Link Processo", "GerenciarProcessos", "PastaDepto", new { idprocesso = @item.CdProcesso}, new { @class = "btn btn-primary" })
+                                    </span>
+                                    <span class="divisor">
+                                        @Html.DisplayFor(modelItem => item.NomeFisicoArquivo)
+                                    </span>
+                                    <span class="divisor">
+                                        @Html.ActionLink("Link Pasta", "GerenciarPastasDaPasta", "PastaDepto", new { idpasta = @item.CdPasta }, new { @class = "btn btn-primary" })
+                                    </span>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Extensao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tamanho)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Caminho)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Owner.NmEntidade)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,175 @@
+﻿@model DEEntities.Processos
+
+@{
+    ViewBag.Title = "GerenciarProcessos";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+    var entidade = Session["entidade"] as DEEntities.Entidade;
+    ViewBag.entidadeexcluir = entidade.Tipo.Nome == "Administrador" ? "" : "display:none";
+}
+
+@section script
+{
+    <script src="~/Scripts/gerenciarprocessos.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+}
+
+
+<div id="divbody" class="gedbox">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Gerência de Processos:  </h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Informações</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("MenuNavegar")
+                    <br />
+
+                    <form action="/ged/pastadepto/upload" method="post" enctype="multipart/form-data" class="form-inline" role="form">
+                        <div class="form-group">
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">
+                                    Pasta Pai:
+                                </div>
+                                <label class="panelInfo-label-result">
+                                    <span id="spnpastanome">
+                                        @Model.PastaPai
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">
+                                    Processo:
+                                </div>
+                                <label class="panelInfo-label-result">
+                                    <span id="spnpastanome">
+                                        @Model.NomeProcesso
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">
+                                    Departamento:
+                                </div>
+                                <label class="panelInfo-label-result">
+                                    <span id="spnpastanome">
+                                        @{
+                                            var depto = ((DEEntities.Depto)Session["depto"]);
+                                        }
+                                        @if (depto != null)
+                                        {
+                                            @depto.NomeDepto
+                                        }
+                                    </span>
+                                </label>
+                            </div>
+
+
+                            <div class="panelInfo">
+                                <div class="panelInfo-label">
+                                    Descrição:
+                                </div>
+                                <label class="panelInfo-label-result">
+                                    <span id="spnpastanome">
+                                        @Model.Descricao
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div style="border:1px solid silver;clear:both;padding:5px;border-radius:5px;width:100%;margin:5px auto;overflow:auto">
+                            <div class="form-group">
+                                <label for="file">Carregar Arquivo:</label>
+                                <input type="file" name="upload" id="upload" class="btn btn-default" />
+                                <input type="file" name="upload2" id="upload2" class="btn btn-default" />
+                                <input type="file" name="upload3" id="upload3" class="btn btn-default" />
+                                <input type="file" name="upload4" id="upload4" class="btn btn-default" />
+                                <input type="hidden" name="idprocesso" value="@Request.QueryString["idprocesso"] " />
+                            </div>
+                            <div class="form-group" style="width:50%">
+                                <label for="file">Descrição para pesquisa de arquivo:</label>
+                                <input type="text" name="uptext1" id="uptext1" class="form-control" />
+                                <input type="text" name="uptext2" id="uptext2" class="form-control" />
+                                <input type="text" name="uptext3" id="uptext3" class="form-control" />
+                                <input type="text" name="uptext4" id="uptext4" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" value="Carregar"
+                                       class="btn btn-primary" style="margin:25px 0 0 0;float:right" />
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registros</h3>
+                </div>
+                <div class="panel-body" style="overflow:auto">
+                    <table class="table table-responsive table-striped dataTable" id="tblarquivos">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Extensão</th>
+                                <th>Tamanho</th>
+                                <th>Descrição</th>
+                                <th>Owner</th>
+                                <th>Baixar</th>
+                                <th>Deletar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{if (Model.Arquivos != null)
+                            {
+                                foreach (var item in Model.Arquivos)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.CdRepositorio
+                                        </td>
+                                        <td>
+                                            @item.NomeArquivo
+                                        </td>
+                                        <td>
+                                            @item.Extensao
+                                        </td>
+                                        <td>
+                                            @{
+                                                @(item.Tamanho / 1024);
+                                            } kb
+                                        </td>
+                                        <td>
+                                            @if (@item.Caminho.Length > 6)
+                                            {
+                                                @item.Caminho.Substring(0, 5) <a href="#" class="descricao"> <span style="font-weight:bold">...</span> </a>
+                                                <input type="hidden" name="name" value="@item.Caminho" />
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.Owner.NmEntidade
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Download", "Download", new { arquivo = item.NomeArquivo, extensao = item.Extensao, nome = item.CdRepositorio.ToString() + item.CdProcesso.ToString() + "." + item.Extensao })
+                                        </td>
+
+                                        <td class="delclass">
+                                            <span style='@ViewBag.entidadeexcluir'>
+                                                @Html.ActionLink("Deletar", "DeletarArquivo", new { id = item.CdRepositorio, idprocesso = Request.QueryString["idprocesso"], nome = item.CdRepositorio.ToString() + item.CdProcesso.ToString() + "." + item.Extensao })
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿@model Utilities.Configuracao
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <title>Licensa</title>
+</head>
+<body>
+    <div>
+        <style>
+            .leftbox {
+                width: 250px;
+            }
+
+
+            .leftbox, .rightbox {
+                float: left;
+                line-height: 19pt;
+                font-size: 18pt;
+                text-transform: uppercase;
+                padding: 3px;
+                text-align: center;
+            }
+
+            .rightbox {
+            }
+
+            .box {
+                margin: 0 auto;
+                background-color: silver !important;
+                clear: both;
+                text-align: center;
+                width: 500px;
+            }
+        </style>
+
+
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dados licensa</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="box">
+                        <div class="leftbox">Cliente: </div>
+                        <div class="rightbox">@Model.NomeCliente </div>
+                    </div>
+                    <div class="box">
+                        <div class="leftbox">Inicio Licensa: </div>
+                        <div class="rightbox">@Model.DataInicioLicensa</div>
+                    </div>
+                    <div class="box">
+                        <div class="leftbox">Fim Licensa: </div>
+                        <div class="rightbox">@Model.DataFimLicensa</div>
+                    </div>
+                    <div class="box">
+                        <div class="leftbox">Dias Restantes: </div>
+                        <div class="rightbox">
+                            @{
+                                var dias = (Model.DataFimLicensa - DateTime.Now).Days.ToString();
+                            }
+                            @dias
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="leftbox">Status: </div>
+                        <div class="rightbox">
+                            @{
+                                var ret = (Model.DataFimLicensa - DateTime.Now).Days > 0;
+                                string licensaInvalida = "";
+                                if (Session["licensaInvalida"] != null)
+                                {
+                                    ret = false;
+                                    licensaInvalida = Session["licensaInvalida"].ToString();
+                                }
+                            }
+                            @if (ret)
+                            {
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-ban-circle" style="color:red">@licensaInvalida </span>
+                                
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <span class="glyphicon glyphicon-home">
+                        @Html.ActionLink("Inicio", "Inicio", "Home")
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

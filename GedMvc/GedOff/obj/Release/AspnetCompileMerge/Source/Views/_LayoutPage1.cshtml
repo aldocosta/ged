@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    @if (IsSectionDefined("script"))
+    {
+        @RenderSection("script");
+
+    }
+
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/default.js"></script>
+
+    <title>@ViewBag.Title</title>
+    <script>
+        var jq = jQuery.noConflict();
+        jq(document).ready(function () {
+            jq('#btnalterarsenha').on('click', function () {
+                // novopass, string passconfirma
+                var jsondata = {
+                    iduser: jq('#iduser').val(),
+                    novopass: jq('#novopass').val(),
+                    passconfirma: jq('#passconfirma').val()
+                };
+
+                myApp.doAjaxPost({
+                    action: myApp.retornarAppName + '/cadastro/AtualizarPassword',
+                    callback: function (data) {
+                        myApp.processData(data, function () {
+                            if (data) {
+                                alert('Password alterado com sucesso!');
+                            }
+
+                        }
+                         , function () { });
+                    },
+                    callbackerro: function () { },
+                    jsondata: jsondata
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="principal" style="">
+        <div>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="@Url.Action("Inicio","Home")">GED</a>
+                    </div>
+                    @{var usuario = Session["entidade"] as DEEntities.Entidade;
+                    string estilo = "";
+                    if (usuario != null)
+                    {
+                        estilo = usuario.Tipo.Nome == "Administrador" ? "" : "display:none";
+                    }
+                    }
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav" style="@estilo">
+                            @*<li class="active"><a href="#">Dashboard</a></li>*@
+                            @*<li class="active">@Html.ActionLink("Dashboard", "Inicio", "Home")</li>*@
+                            @*<li><a href="#">Link</a></li>*@
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        @Html.ActionLink("Usuários", "Novo", "Cadastro")
+                                    </li>
+                                    @*<li><a href="#">Departamento</a></li>*@
+                                    <li>@Html.ActionLink("Departamento", "Novo", "Departamento")</li>
+                                    <li class="divider"></li>
+                                    <li>@Html.ActionLink("Configurar Acesso Usuário", "Relacionar", "DeptoUsuario")</li>
+                                    <li class="divider"></li>
+                                    <li>@Html.ActionLink("Recuperar usuário", "Usuariosbloqueados", "Cadastro")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @using (Html.BeginForm("PesquisarRegistros", "PastaDepto", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
+                        {
+                            <div class="form-group">
+                                <input type="text" name="key" class="form-control" placeholder="Pesquisar registro">
+                                <input type="hidden" name="iduser" value="@usuario.Codigo" />
+                            </div>
+                            <button type="submit" class="btn btn-default">Pesquisar</button>
+                        }
+                        <form class="navbar-form navbar-left" role="search" style="display:none"></form>
+                        <ul class="nav navbar-nav navbar" style="color:black;">
+                            <li>
+                                <a href="#" style="cursor:default;border:1px solid silver;background-color:white;">
+                                    <span style="color:black">
+                                        USER LOGADO:
+                                    </span>
+                                    @{
+                                        <span style="color:black">@usuario.NmUser.ToUpper() - </span>
+                                        <span style="color:black"> Perfil: @usuario.Tipo.Nome</span>
+                                    }
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href='@System.Configuration.ConfigurationManager.AppSettings["appname"]/home/logout'>
+                                    <span class="glyphicon glyphicon-log-out"> Logout </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configurações<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    @*<li><a href="#">Criando usuários</a></li>
+                                        <li><a href="#">Configurando acesso</a></li>
+                                        <li><a href="#">Criando pastas e processos</a></li>
+                                        <li><a href="#">Followup de processos</a></li>
+                                        <li><a href="#">Sobre</a></li>*@
+                                    
+                                    <li style="padding:5px">
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Alteração de Senha <span id="passstatus"></span> </div>
+                                            <div class="panel-body" style="overflow:auto">
+                                                <div id="frmnovasenha" style="">
+                                                    <form class="form-inline">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                            <input type="password" class="form-control" id="novopass" name="novopass" placeholder="Password">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="exampleInputPassword2">Confirmar Password</label>
+                                                            <input type="password" class="form-control" id="passconfirma" name="passconfirma" placeholder="Confirmar Password">
+                                                            @if (Session["entidade"] != null)
+                                                            {
+                                                                var entidade = Session["entidade"] as DEEntities.Entidade;
+                                                                <input type="hidden" name="iduser" id="iduser" value="@entidade.Codigo" />
+                                                            }
+
+                                                        </div>
+                                                        <button type="button" id="btnalterarsenha" class="btn btn-default">Confirma</button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="/ged/Home/licensa">Dados Licensa</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <div>@RenderBody()</div>
+    </div>
+
+
+</body>
+</html>

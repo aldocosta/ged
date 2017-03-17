@@ -1,0 +1,7 @@
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\bin\Debug\DEEntities.dll
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\bin\Debug\DEEntities.pdb
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\bin\Debug\Utilities.dll
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\bin\Debug\Utilities.pdb
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\obj\Debug\DEEntities.csprojResolveAssemblyReference.cache
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\obj\Debug\DEEntities.dll
+C:\Users\Aldo\Downloads\GedMvc\DEEntities\obj\Debug\DEEntities.pdb

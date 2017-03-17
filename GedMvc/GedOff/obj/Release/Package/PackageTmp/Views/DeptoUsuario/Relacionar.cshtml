@@ -1,0 +1,89 @@
+﻿@model DEEntities.EntidadeDepto
+
+@{
+    ViewBag.Title = "Relacionar";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@section script
+{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/relacionar.js"></script>
+}
+
+<style>
+    button {
+        width: 120px;
+        margin: 3px;
+    }
+</style>
+
+@{
+    var ents = GedOff.Controllers.DeptoUsuarioController.RetornarEntidades();
+    var deptos = GedOff.Controllers.DeptoUsuarioController.RetornarDeptos();
+}
+
+@*@using (Html.BeginForm("", "", FormMethod.Post, new { role = "form" }))
+{
+}*@
+<div class="panel panel-primary gedbox">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Configuração de acesso </h3>
+    </div>
+    <div class="panel-body panel-body-resp">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Usuários X Departamentos:  <button class="btn btn-default" id="btngravar">Gravar</button> </h3>
+                    </div>
+                    <div class="panel-body panel-body-resp">
+                        <select class="form-control" id="selusuario">
+
+                            @{
+                                <option value="">Selecionar</option>
+                                foreach (var item in ents)
+                                {
+                                    <option value="@item.Codigo">@item.NmEntidade</option>
+                                }
+                            }
+                        </select>
+
+                        <table class="table table-responsive display" id="tbldepto">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Departamento</th>
+                                    <th>Check</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Departamento</th>
+                                    <th>Check</th>
+                                </tr>
+                            </tfoot>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary gedbox">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span> Relação:</h3>
+                    </div>
+                    <div class="panel panel-body panel-body-resp">
+                        <table class="table table-responsive display" id="tbldeptoentidade">
+                            <thead><tr><th>Menu</th><th>Id</th><th>Departamento</th></tr></thead>
+                            <tfoot><tr><th>Menu</th><th>Id</th><th>Departamento</th></tr></tfoot>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

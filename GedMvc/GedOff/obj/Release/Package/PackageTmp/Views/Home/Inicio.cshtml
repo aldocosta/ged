@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+    var ret = Session["entidade"] as DEEntities.Entidade;
+    if (ret == null)
+    {
+        Response.Redirect(System.Configuration.ConfigurationManager.AppSettings["appname"] + "/Home/Login");
+    }
+}
+
+@section script
+{
+    <script src="~/Scripts/inicio.js"></script>
+}
+
+<div class="panel panel-primary gedbox">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-tags"></span>  Departamentos que (<span class="userLogged"> @ret.NmUser.ToUpper() </span>) tem acesso:</h3>
+    </div>
+    <div class="panel-body panel-body-resp">
+        @using (Html.BeginForm("Processo", "Home", FormMethod.Post, new { id = "form" }))
+        {
+
+            if (Session["entidade"] != null)
+            {
+                var ent = Session["entidade"] as DEEntities.Entidade;
+
+                var ed = BLLEntidades.BLLEntidadeDepto.RetornarDepartamentosEntidade(new DEEntities.EntidadeDepto()
+                {
+                    cdEntidade = ent.Codigo
+                });
+
+                foreach (var item in ed)
+                {
+                    <div class="deptos" data-iddepto="@item.cdDepto">
+                        <div class="deptoCaption">
+                            <span class="glyphicon glyphicon-tag" id=""></span> @item.NmDepto
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                Response.Redirect("/Home/Login");
+            }
+        }
+    </div>
+</div>
