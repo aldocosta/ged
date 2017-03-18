@@ -13,6 +13,7 @@ jq(document).ready(function () {
     });
 
     jq('#btngravar').on('click', function () {
+        jq('#mod').show();
         var obj = JSON.stringify({
             NmDepto: jq('#NmDepto').val(),
             Id: jq('#spnidregistro').html().split(':')[1]
@@ -61,7 +62,7 @@ jq(document).ready(function () {
     }
 
     function createGrid(jq, data) {
-        //jq('#gridlista').DataTable().destroy();
+        jq('#gridlista').DataTable().destroy();
         jq('#gridlista tbody').html('');
         for (var i = 0; i < data.length; i++) {
             var tr = document.createElement('tr');
@@ -82,6 +83,7 @@ jq(document).ready(function () {
             jq(tddel).on('click', function () {
                 var data = JSON.stringify({ id: jq(this).next().html() });
                 if (confirm('Deseja deletar esse registro?')) {
+                    jq('#mod').show();
                     jq.ajax({
                         type: 'POST',
                         url: myApp.retornarAppName + '/Departamento/DeletarRegistro',
@@ -130,6 +132,7 @@ jq(document).ready(function () {
                 "info": "Pagina _PAGE_ de _PAGES_"
             }
         });
+        jq('#mod').hide();
     }
 
     jq('#btnfecharnovo').on('click', function () {
