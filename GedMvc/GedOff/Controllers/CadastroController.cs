@@ -1,5 +1,6 @@
 ﻿using DEEntities;
 using GedOff.Models;
+using GedOff.Security;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace GedOff.Controllers
 {
+    [CustomSecurity]
     public class CadastroController : Controller
     {
         //
@@ -16,16 +18,14 @@ namespace GedOff.Controllers
 
         public ActionResult Novo()
         {
-            Entidade entidade = Session["entidade"] as Entidade;
-            VerificarSessao(entidade);
+            Entidade entidade = Session["entidade"] as Entidade;            
             return View(entidade);
         }
 
         [HttpPost]
         public ActionResult Novo(string NmEntidade, string NmUser, string NmEmail, string selTipo)
         {
-            Entidade entidade = Session["entidade"] as Entidade;
-            VerificarSessao(entidade);
+            Entidade entidade = Session["entidade"] as Entidade;            
             Entidade entidadedestino = new Entidade()
             {
                 NmEntidade = NmEntidade,
@@ -228,8 +228,7 @@ namespace GedOff.Controllers
 
         public ActionResult UsuariosBloqueados()
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-            VerificarSessao(entidade_);
+            Entidade entidade_ = Session["entidade"] as Entidade;            
             var ret = BLLEntidades.BLLEntidade.RetornarListaEntidadeMarcadosDeletado();
             return View(ret);
         }
@@ -237,20 +236,11 @@ namespace GedOff.Controllers
         [HttpPost]
         public ActionResult DesbloquearUsuario(string dadosid, string dadosnome)
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-            VerificarSessao(entidade_);
+            Entidade entidade_ = Session["entidade"] as Entidade;            
             BLLEntidades.BLLEntidade.UnMarkUser(new Entidade() { Codigo = int.Parse(dadosid) });
             var ret = BLLEntidades.BLLEntidade.RetornarListaEntidadeMarcadosDeletado();
             return View("UsuariosBloqueados", ret);
         }
-
-        private void VerificarSessao(object obj)
-        {
-            if (obj == null)
-            {
-                Response.Redirect(ConfigurationManager.AppSettings["appname"] + "/Home/Login");
-                return;
-            }
-        }
+        
     }
 }

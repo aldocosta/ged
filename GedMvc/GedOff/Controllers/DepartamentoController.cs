@@ -1,5 +1,6 @@
 ﻿using DEEntities;
 using GedOff.Models;
+using GedOff.Security;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,15 +10,14 @@ using System.Web.Mvc;
 
 namespace GedOff.Controllers
 {
+    [CustomSecurity]
     public class DepartamentoController : Controller
     {
         //
         // GET: /Departamento/
 
         public ActionResult Novo()
-        {
-            Entidade entidade = Session["entidade"] as Entidade;
-            VerificarSessao(entidade);
+        {            
             return View();
         }
 
@@ -25,16 +25,16 @@ namespace GedOff.Controllers
         [HttpPost]
         public JsonResult DeletarRegistro(string id)
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
+            //Entidade entidade_ = Session["entidade"] as Entidade;
             bool del = false;
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
+            //if (entidade_ == null)
+            //{
+            //    var erro = new
+            //    {
+            //        msg = "Logon expirado"
+            //    };
+            //    return Json(erro);
+            //}
             try
             {
                 del = BLLEntidades.BLLDepto.DeletarDepto(int.Parse(id));
@@ -59,14 +59,14 @@ namespace GedOff.Controllers
         {
             Entidade entidade_ = Session["entidade"] as Entidade;
 
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
+            //if (entidade_ == null)
+            //{
+            //    var erro = new
+            //    {
+            //        msg = "Logon expirado"
+            //    };
+            //    return Json(erro);
+            //}
             if (id != "" && id != null)
             {
                 return Json(BLLEntidades.BLLDepto.Atualizar(id, NmDepto));
@@ -84,16 +84,6 @@ namespace GedOff.Controllers
         [HttpPost]
         public JsonResult CriarGrid()
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
             var ret = from alias in BLLEntidades.BLLDepto.RetornarDeptos()
                       select new
                       {
@@ -104,15 +94,6 @@ namespace GedOff.Controllers
                           Owner = alias.OwnerName
                       };
             return Json(ret, JsonRequestBehavior.AllowGet);
-        }
-
-        private void VerificarSessao(object obj)
-        {
-            if (obj == null)
-            {
-                Response.Redirect(ConfigurationManager.AppSettings["appname"] + "/Home/Login");
-                return;
-            }
         }
 
     }

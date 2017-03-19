@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="banco-Web.config Connection String" description="banco Connection String used in web.config by the application to access the database." defaultValue="SERVER=mysql.aldocosta.com.br;DATABASE=aldocosta06;UID=aldocosta06;PASSWORD=1rit4ld0;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Aldo\\Downloads\\GedMvc\\GedOff\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='banco']/@connectionString" />
-  </parameter>
-</parameters>

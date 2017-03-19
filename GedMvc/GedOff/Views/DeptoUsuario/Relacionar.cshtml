@@ -1,4 +1,4 @@
-﻿@model DEEntities.EntidadeDepto
+﻿@model IList<DEEntities.Entidade>
 
 @{
     ViewBag.Title = "Relacionar";
@@ -19,8 +19,8 @@
 </style>
 
 @{
-    var ents = GedOff.Controllers.DeptoUsuarioController.RetornarEntidades();
-    var deptos = GedOff.Controllers.DeptoUsuarioController.RetornarDeptos();
+    //var ents = GedOff.Controllers.DeptoUsuarioController.RetornarEntidades();
+    //var deptos = GedOff.Controllers.DeptoUsuarioController.RetornarDeptos();
 }
 
 @*@using (Html.BeginForm("", "", FormMethod.Post, new { role = "form" }))
@@ -42,7 +42,7 @@
 
                             @{
                                 <option value="">Selecionar</option>
-                                foreach (var item in ents)
+                                foreach (var item in Model)
                                 {
                                     <option value="@item.Codigo">@item.NmEntidade</option>
                                 }

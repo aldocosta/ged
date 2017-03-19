@@ -1,4 +1,5 @@
 ﻿using DEEntities;
+using GedOff.Security;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,60 +9,24 @@ using System.Web.Mvc;
 
 namespace GedOff.Controllers
 {
+    [CustomSecurity]
     public class DeptoUsuarioController : Controller
     {
-        static IList<Entidade> Entidades { get; set; }
-        static IList<Depto> Deptos { get; set; }
-        public static IList<Entidade> RetornarEntidades()
-        {   
-            return Entidades;
-        }
-
-        public static IList<Depto> RetornarDeptos()
-        {
-            return Deptos;
-        }
         public ActionResult Relacionar()
         {
-            Entidade entidade = Session["entidade"] as Entidade;
-            VerificarSessao(entidade);
-
-            Entidades = BLLEntidades.BLLEntidade.RetornarListaEntidade();
-            Deptos = BLLEntidades.BLLDepto.RetornarDeptos();
-
-            return View();
+            var Entidades = BLLEntidades.BLLEntidade.RetornarListaEntidade();
+            return View(Entidades);
         }
 
         [HttpPost]
         public JsonResult RetornarListaDeptos()
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
-            return Json(Deptos);
+            return Json(BLLEntidades.BLLDepto.RetornarDeptos());
         }
 
         [HttpPost]
-        public JsonResult GravarRelacao(string iddepto, string identidade)  
+        public JsonResult GravarRelacao(string iddepto, string identidade)
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
-
             var deptos = iddepto.Split(',');
 
             foreach (string item in deptos)
@@ -83,32 +48,12 @@ namespace GedOff.Controllers
         [HttpPost]
         public JsonResult DeletarRelacao(string iddepto, string id)
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
             return Json(BLLEntidades.BLLEntidadeDepto.DeletarRelacao(id, iddepto));
         }
 
         [HttpPost]
         public JsonResult RetornarDeptosEntidade(string identidade)
         {
-            Entidade entidade_ = Session["entidade"] as Entidade;
-
-            if (entidade_ == null)
-            {
-                var erro = new
-                {
-                    msg = "Logon expirado"
-                };
-                return Json(erro);
-            }
             return Json(BLLEntidades.BLLEntidadeDepto.RetornarDepartamentosEntidade(new EntidadeDepto()
             {
                 cdEntidade = int.Parse(identidade)

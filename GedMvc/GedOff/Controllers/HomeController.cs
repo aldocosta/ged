@@ -1,19 +1,26 @@
 ﻿using BLLEntidades;
 using DEEntities;
 using GedOff.Models;
+using GedOff.Security;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Utilities;
 
 namespace GedOff.Controllers
 {
+
     public class HomeController : Controller
     {
         string _Path = "/Inicio";
+
+
+
+        [CustomSecurity]
         public ActionResult Inicio()
         {
             var ret = Session["entidade"] as Entidade;
@@ -26,37 +33,39 @@ namespace GedOff.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
-            //string path = @"c:\gedrepositorio\config.bin";
+            string path = @"c:\gedrepositorio\config.bin";
 
-            //var con = Util.Deserializar(path, "");
+            var con = Util.Deserializar(path, "");
             //string PATH = @"\currentuser\SOFTWARE\gedsys\guidkey";
-            ////var guid = Util.retornarRegitro(PATH, "guidkey");
+            //var guid = Util.retornarRegitro(PATH, "guidkey");
 
-            //if (con != null)
-            //{
-            ///*    if (con.GuidValue != guid)
-            //    {
-            //        Session["licensaInvalida"] = "Este arquivo de licensa não está válido, contate o administrador!";
-            //        return RedirectToAction("/licensa");
-            //    }
-            // */ 
-            //}
-            ////Session["configuracao"] = con;
+            if (con != null)
+            {
+                /*    if (con.GuidValue != guid)
+                    {
+                        Session["licensaInvalida"] = "Este arquivo de licensa não está válido, contate o administrador!";
+                        return RedirectToAction("/licensa");
+                    }
+                 */
+            }
+            //Session["configuracao"] = con;
 
-            //var dias = (con.DataFimLicensa - DateTime.Now);
+            var dias = (con.DataFimLicensa - DateTime.Now);
 
-            //if (con.DataFimLicensa < DateTime.Now)
-            //{
-            //    return RedirectToAction("/licensa");
-            //}
+            if (con.DataFimLicensa < DateTime.Now)
+            {
+                return RedirectToAction("/licensa");
+            }
 
             //Session.Clear();
             return View();
         }
 
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult GedLogin(string inputLogin, string inputPassword3)
         {
@@ -66,12 +75,11 @@ namespace GedOff.Controllers
 
                 if (ret == null)
                 {
-                    //return RedirectToAction("Login");
-                    //Response.Redirect("/home/Login?msg=Usuário ou senha inválidos");
                     return RedirectToAction("/login", new { msg = "Usuário ou senha inválidos" });
                 }
                 else
                 {
+                    FormsAuthentication.SetAuthCookie(inputLogin, false);
                     Session["entidade"] = ret;
                 }
             }
@@ -85,6 +93,7 @@ namespace GedOff.Controllers
 
             return RedirectToAction(_Path);
         }
+
 
         public ActionResult Logout()
         {
@@ -103,11 +112,13 @@ namespace GedOff.Controllers
             }
         }
 
+        [CustomSecurity]
         public ActionResult AlterarSenha()
         {
             return View();
         }
 
+        [CustomSecurity]
         public ActionResult Licensa()
         {
             string path = @"c:\gedrepositorio\config.bin";

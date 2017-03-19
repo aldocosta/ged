@@ -30,7 +30,7 @@
                     @{var nome = Request.QueryString["name"];
                     if (nome != "" && nome != null)
                     {
-                        <span> Pasta   </span><span> (</span> @GedOff.Controllers.PastaDeptoController.Mapa <span>)</span>
+                        <span> Pasta:::   </span>@*<span> (</span> @GedOff.Controllers.PastaDeptoController.Mapa <span>)</span>*@
                         <span>do departamento: ( @deptos.NomeDepto )</span>
                     }
                     else
@@ -51,12 +51,7 @@
     </div>
     <div class="panel-body panel-body-resp">
         <div>
-            <ul class="list-inline list-group-item">
-                @*<li>
-                    <a href="#" onclick="history.back();">
-                        <span class="glyphicon glyphicon-arrow-left"></span> Anterior
-                    </a>
-                </li>*@
+            <ul class="list-inline list-group-item">                
                 <li>
                     <a href="@Url.Action("inicio", "home")">
                         <span class="glyphicon glyphicon-home"></span> Inicio
