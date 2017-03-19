@@ -1,5 +1,17 @@
 ﻿# Para todos os arquivos e sub-pastas localizados na pasta vendor/
-obj/
+GedMvc/GedOff/obj/Release/
+GedMvc/GedOff/obj/
+GedMvc/BllEntidades/GedOff/obj/
+GedMvc/BLLEntidades/obj/
+GedMvc/DAL/obj/
+GedMvc/DEEntities/obj/
+GedMvc/GedTest/obj/
+GedMvc/Utilities/obj/
+GedMvc/BLLEntidades/bin/
+GedMvc/DAL/bin/
+GedMvc/GedOff/obj/
+GedMvc/GedOff/obj/Release/TransformWebConfig/transformed/
+GedMvc/DAL/bin/
 # Para arquivos Java compilados
 *.class
 # Para código C
