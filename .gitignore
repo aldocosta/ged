@@ -1,0 +1,10 @@
+# Para todos os arquivos e sub-pastas localizados na pasta vendor/
+obj/
+# Para arquivos Java compilados
+*.class
+# Para código C
+*.vsscc
+*.packages.config
+*.web.config
+*.web.debug.config
+*.web.release.config
