@@ -10,3 +10,15 @@ C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Debug\DEEntities.pdb
 C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\bin\Debug\Utilities.pdb
 C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\obj\Debug\BLLEntidades.dll
 C:\Users\Aldo\Downloads\GedMvc\BLLEntidades\obj\Debug\BLLEntidades.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\BLLEntidades.dll.config
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\BLLEntidades.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\BLLEntidades.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\DAL.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\DEEntities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\Utilities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\DAL.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\DEEntities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\bin\Debug\Utilities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\obj\Debug\BLLEntidades.csprojResolveAssemblyReference.cache
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\obj\Debug\BLLEntidades.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\BLLEntidades\obj\Debug\BLLEntidades.pdb

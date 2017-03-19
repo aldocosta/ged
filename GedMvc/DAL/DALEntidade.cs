@@ -98,6 +98,7 @@ namespace DAL
                     ret.Add(entidade);
                 }
                 Util.FinalizarDataReader(leitor);
+                con.Dispose();
             }
             return ret;
         }

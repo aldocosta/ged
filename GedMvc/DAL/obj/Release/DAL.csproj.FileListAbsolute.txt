@@ -10,3 +10,15 @@ C:\Users\Aldo\Downloads\GedMvc\DAL\obj\Release\DAL.dll
 C:\Users\Aldo\Downloads\GedMvc\DAL\obj\Release\DAL.pdb
 C:\Users\Aldo\Downloads\GedMvc\DAL\bin\Release\MySql.Data.dll
 C:\Users\Aldo\Downloads\GedMvc\DAL\bin\Release\MySql.Data.xml
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\DAL.dll.config
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\DAL.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\DAL.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\DEEntities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\MySql.Data.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\Utilities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\DEEntities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\Utilities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\bin\Release\MySql.Data.xml
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\obj\Release\DAL.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DAL\obj\Release\DAL.pdb

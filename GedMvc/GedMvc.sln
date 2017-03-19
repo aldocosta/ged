@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEEntities", "DEEntities\DEEntities.csproj", "{84CB3253-E702-4EB6-933B-E18D714E2AA2}"
 EndProject
@@ -13,28 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedOff", "GedOff\GedOff.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{75DB0738-7765-480D-8112-C88478FA3805}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedTest", "GedTest\GedTest.csproj", "{426F1190-556C-46B5-8172-A33B18B2BE4A}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://aldocostasantos.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = BLLEntidades\\BLLEntidades.csproj
-		SccProjectName1 = BLLEntidades
-		SccLocalPath1 = BLLEntidades
-		SccProjectUniqueName2 = DAL\\DAL.csproj
-		SccProjectName2 = DAL
-		SccLocalPath2 = DAL
-		SccProjectUniqueName3 = DEEntities\\DEEntities.csproj
-		SccProjectName3 = DEEntities
-		SccLocalPath3 = DEEntities
-		SccProjectUniqueName4 = GedOff\\GedOff.csproj
-		SccProjectName4 = GedOff
-		SccLocalPath4 = GedOff
-		SccProjectUniqueName5 = Utilities\\Utilities.csproj
-		SccProjectName5 = Utilities
-		SccLocalPath5 = Utilities
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -60,6 +41,10 @@ Global
 		{75DB0738-7765-480D-8112-C88478FA3805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75DB0738-7765-480D-8112-C88478FA3805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75DB0738-7765-480D-8112-C88478FA3805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426F1190-556C-46B5-8172-A33B18B2BE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426F1190-556C-46B5-8172-A33B18B2BE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426F1190-556C-46B5-8172-A33B18B2BE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426F1190-556C-46B5-8172-A33B18B2BE4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

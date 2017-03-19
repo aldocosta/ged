@@ -5,3 +5,10 @@ C:\Users\Aldo\Downloads\GedMvc\DEEntities\bin\Release\Utilities.pdb
 C:\Users\Aldo\Downloads\GedMvc\DEEntities\obj\Release\DEEntities.csprojResolveAssemblyReference.cache
 C:\Users\Aldo\Downloads\GedMvc\DEEntities\obj\Release\DEEntities.dll
 C:\Users\Aldo\Downloads\GedMvc\DEEntities\obj\Release\DEEntities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\bin\Release\DEEntities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\bin\Release\DEEntities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\bin\Release\Utilities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\bin\Release\Utilities.pdb
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\obj\Release\DEEntities.csprojResolveAssemblyReference.cache
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\obj\Release\DEEntities.dll
+C:\Users\Aldo\Documents\GitHub\ged\GedMvc\DEEntities\obj\Release\DEEntities.pdb

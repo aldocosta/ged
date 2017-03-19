@@ -32,7 +32,7 @@ namespace DAL
         /// <param name="adaptador">DataAdapter abstrato podendo ser SqlDataAdapter, OleDbDataAdapter, MySqlDataAdapter, OleDbDataAdapter, etc...</param>
         /// <param name="isTransaction">Inicia o objeto usando ou não transaction na conexão e nos objetos de comando</param>
         public ConexaoGenerica(DbDataAdapter adaptador, bool isTransaction)
-        {
+        {            
             //if (adaptador.SelectCommand == null)
             //{
             //    throw new Exception("Contrutor do Adaptador precisa ser iniciado com a query sql e a conexao sql");
