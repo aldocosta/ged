@@ -167,6 +167,7 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\DeptoUsuarioController.cs" />
     <Compile Include="Controllers\ErroController.cs" />
+    <Compile Include="Controllers\GenericoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PastaDeptoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -295,6 +296,7 @@
     <Content Include="Views\Home\LicensaExpirada.cshtml" />
     <Content Include="Views\Home\Licensa.cshtml" />
     <Content Include="Views\PastaDepto\PesquisarPastas.cshtml" />
+    <Content Include="Views\Shared\ModalLoading.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -335,10 +337,12 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>5695</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/Ged</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/ged</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

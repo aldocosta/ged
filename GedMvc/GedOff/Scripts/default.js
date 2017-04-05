@@ -127,7 +127,8 @@
                 window.location.href = myApp.retornarAppName + "/home/login?msg=" + data.msg;
                 return;
             } else {
-                alert(data.msg);
+                error(data);
+                //alert(data.msg);
             }
         } else if (data.error == undefined) {
             success();

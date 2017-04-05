@@ -12,7 +12,7 @@ namespace GedTest
         {
             Configuracao conf = new Configuracao();
             conf.DataInicioLicensa = DateTime.Now;
-            conf.DataFimLicensa = conf.DataInicioLicensa.AddDays(30);
+            conf.DataFimLicensa = conf.DataInicioLicensa.AddDays(360);
             conf.GuidValue = Guid.NewGuid().ToString();
             conf.NomeCliente = "Demo";
 

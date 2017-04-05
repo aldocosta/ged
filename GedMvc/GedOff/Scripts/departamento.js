@@ -94,8 +94,9 @@ jq(document).ready(function () {
                             myApp.processData(data, function () {
                                 criarLista();
                                 myApp.alert('Registro excluído com sucesso!', time);
-                            }, function () {
-                                alert("Atenção, ocorreu um erro: " + data.error);
+                            }, function (data) {
+                                jq('#mod').hide();
+                                alert("Atenção, ocorreu um erro: " + data.msg);
                             });                            
                         },
                         error: function (data) {

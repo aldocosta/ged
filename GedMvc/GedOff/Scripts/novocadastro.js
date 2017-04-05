@@ -58,18 +58,22 @@ jq(document).ready(function () {
     });
 
     function carregarGrid() {
+        jq('#mod').show();
         var action = myApp.retornarAppName + '/Cadastro/CriarGrid';
         myApp.doAjaxPost({
             action: action,
             callback: function (data) {
                 myApp.processData(data, function () {
                     createGrid(jq, data);
+                    jq('#mod').hide();
                 }, function () {
+                    jq('#mod').hide();
                     alert(data.error);
                 });
             },
             callbackerro: function (data) {
                 alert(data.error);
+                jq('#mod').hide();
             }
         });
     }
@@ -152,7 +156,7 @@ jq(document).ready(function () {
     }
 
     function novoRegistro() {
-
+        jq('#mod').show();
         var ent = {
             Codigo: jq('#spnidregistro').html(),
             NmEntidade: jq('#NmEntidade').val(),
@@ -171,19 +175,23 @@ jq(document).ready(function () {
                     carregarGrid();
                     jq('#btnfecharnovo').click();
                     myApp.alert('Registro inserido/alterado com sucesso!', myApp.commom.time);
+                    jq('#mod').hide();
                 }, function () {
                     jq('#btnfecharnovo').click();
                     alert('Atenção, ocorreu um erro: ' + data.error);
+                    jq('#mod').hide();
                 });
             },
             callbackerro: function (data) {
                 alert(data.responseText);
+                jq('#mod').hide();
             }
         });
 
     }
 
     function deletar(id, jq) {
+        jq('#mod').show();
         var data = { id: id };
         myApp.doAjaxPost({
             action: myApp.retornarAppName + '/Cadastro/DeletarRegistro',
@@ -192,11 +200,13 @@ jq(document).ready(function () {
                     carregarGrid();
                     jq('#btnfecharnovo').click();
                     myApp.alert('Registro excluído com sucesso!', myApp.commom.time);
+                    jq('#mod').hide();
                 }, function () {
                     alert('Atenção, ocorreu um erro: ' + data.error);
+                    jq('#mod').hide();
                 });
             },
-            callbackerro: function () { },
+            callbackerro: function () { jq('#mod').hide(); },
             jsondata: data
         });
     }
